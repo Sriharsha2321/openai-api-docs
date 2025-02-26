@@ -10,3 +10,5 @@ To use the API, you need a key from Open AI
 '''http
 Authroization: Bearer YOUR_API_KEY
 Content-type: application/json
+### Result
+Produced API Document
