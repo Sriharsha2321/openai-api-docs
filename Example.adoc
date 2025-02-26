@@ -1,0 +1,15 @@
+= Dimensioning guide   
+== Introductin
+Dimensioning is the process of caluclating the number of resources required to deploy the code and run the program smooothly.
+== Resources Required
+The resources required to perform dimesnioning process are
+- A computer with below specifications
+* 128 GB RAM
+* 1 TB HDD meomry / 2 TB SSD Memory
+* Preinstalled GUI
+* Windows 10 or above Operating System
+* IOS 18 or above for Mac book
+* No LINUX system can be used
+== Dimensioning Process
+
+:
