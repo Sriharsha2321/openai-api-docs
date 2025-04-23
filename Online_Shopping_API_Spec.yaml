@@ -1,0 +1,110 @@
+openapi: 3.0.3
+
+info:
+  title: Online shopping payment API
+  Version: 1.0.0
+  description: >
+    This API allows clients to create and track payment transcations for an online 
+    shopping platform.
+    
+
+servers:
+  - url: https://api.shop-payments.com/v1
+    description: Production server
+
+paths:
+  /payments:
+    post:
+      summary: Create a new payment
+      description: Initiates a payment transaction for an order
+      tags:
+        - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Payment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Invalid request
+
+  /payments/{paymentId}/status:
+    get:
+      summary: Get payment status
+      description: Returns the current status of a specific payment
+      tags:
+        - Payments
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment status response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentStatus'
+        '404':
+          description: Payment not found
+
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+      properties:
+        orderId:
+          type: string
+          example: "123456"
+        amount:
+          type: number
+          format: float
+          example: 100.50
+        currency:
+          type: string
+          example: "USD"
+        paymentMethod:
+          type: string
+          enum: [credit_card, paypal, net_banking]
+          example: "credit_card"
+      required:
+        - orderId
+        - amount
+        - currency
+        - paymentMethod
+
+    PaymentResponse:
+      type: object
+      properties:
+        paymentId:
+          type: string
+          example: "abc123"
+        status:
+          type: string
+          example: "initiated"
+
+    PaymentStatus:
+      type: object
+      properties:
+        paymentId:
+          type: string
+          example: "abc123"
+        orderId:
+          type: string
+          example: "123456"
+        status:
+          type: string
+          example: "processing"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-04-10T12:34:56Z"    
