@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: Online shopping payment API
-  Version: 1.0.0
+  version: 1.0.0
   description: >
     This API allows clients to create and track payment transcations for an online 
     shopping platform.
@@ -56,7 +56,7 @@ paths:
                 $ref: '#/components/schemas/PaymentStatus'
         '404':
           description: Payment not found
-  /payments/refund
+  /payments/refund:
     post:
       summary: Refund payment
       description: Initiates a refund for a completed order payment
@@ -88,9 +88,9 @@ paths:
                   status: 
                     type: string
                     enum: [processing, completed, failed]
-          '400' :
+        '400' :
             description: Invalid request or already refunded.
-          '404' :
+        '404' :
             description: Payment ID not found.
 
 
